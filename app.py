@@ -14,7 +14,7 @@ class Agenda(db.Model):
         return self.id
 
 
-@app.route("/")
+@app.route("/", methods=['POST', 'GET',])
 def index():
     return render_template("index.html")
 

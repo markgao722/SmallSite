@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
+<title>Home Page</title>
 {% endblock %}
 
 
 {% block body %}
+
 <h3>We are inheriting from the base html template!</h3>
+
+
+<form action="/" method="POST">
+    <input type="text" name="content" id="content">
+    <input type="submit" value="Post">
+</form>
+
+<h3>Here is a list of random things from the database</h3>
+
 {% endblock %}
