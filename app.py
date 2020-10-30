@@ -18,4 +18,9 @@ class Agenda(db.Model):
 def index():
     return render_template("index.html")
 
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
 app.run(debug=True)
