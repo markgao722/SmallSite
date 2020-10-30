@@ -9,21 +9,18 @@
     {% block head %} {% endblock %}
 </head>
 <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            
-            <div class="navbar-collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                </ul>
-            </div>
-        
-        
-            
-        </nav>
-    </div>
+    <!-- displays flash text with second argument "success" -->
+    {% with messages=get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert-{{ category }}">  <!-- alert-sucess is a bootstrap feature -->
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- inhereting templates data goes below -->
+    {% block content %} {% endblock %}
 </body>
 </html>
