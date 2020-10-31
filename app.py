@@ -44,9 +44,12 @@ def login():
     f = forms.LoginFm()
 
     if f.validate_on_submit():
-        flash(f"Successful login test for {f.user.data}!", 'success')  
-        return redirect(url_for('index'))
-
+        if f.user.data == "god" and f.password.data == "123":
+            flash(f"Successful login in God Mode. Maximum admin priviledges granteed.", 'success')  
+            return redirect(url_for('index'))    
+        else:
+            flash(f"Successful login test for {f.user.data}!", 'success')  
+            return redirect(url_for('index'))
     return render_template("login.html", title="Login", form=f)
 
 

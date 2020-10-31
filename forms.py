@@ -7,7 +7,7 @@ class RegistrationFm(FlaskForm):
     # all elements of the form are attributes of a Flaskform class
     user = StringField("Username", validators=[
         DataRequired(),
-        Length(min=2, max=20),
+        Length(min=1, max=20),
     ])
 
     password = StringField("Password", validators=[
@@ -25,11 +25,12 @@ class RegistrationFm(FlaskForm):
 class LoginFm(FlaskForm):
     user = StringField("Username", validators=[
         DataRequired(),
-        Length(min=2, max=30),
+        Length(min=1, max=20),
     ])
 
     password = PasswordField("Password", validators=[
         DataRequired(),
+        Length(min=3, max=50),
     ])
 
     remember = BooleanField("Remember Me")

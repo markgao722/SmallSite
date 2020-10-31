@@ -1,17 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
     
-    <!-- displays flash text with second argument "success" -->
-    {% with messages=get_flashed_messages(with_categories=True) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert-{{ category }}">  <!-- alert-sucess is a bootstrap feature -->
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-
     <form method="POST" action="">
         {{ form.hidden_tag() }}  <!--- protects against CSRF attack -->
 
