@@ -8,7 +8,6 @@ class RegistrationFm(FlaskForm):
     user = StringField("Username", validators=[
         DataRequired(),
         Length(min=2, max=20),
-        Regexp("[A-z]+|[0-9]+[0-9]|[A-z]")  # PasswordField has builtin RE but anonymizes text input
     ])
 
     password = StringField("Password", validators=[
@@ -18,7 +17,7 @@ class RegistrationFm(FlaskForm):
 
     password_confirm = StringField("Confirm Password", validators=[
         DataRequired(),
-        EqualTo("Password")
+        EqualTo("password")
     ])
 
     submit_btn = SubmitField("Register")

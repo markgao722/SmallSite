@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect
+from flask import Flask, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import forms
 
@@ -32,7 +32,8 @@ def register():
     f = forms.RegistrationFm()
 
     if f.validate_on_submit():
-        flash(f"An account has been created for {f.username.data}", 'success')  # second arg captures bootstrap result success
+        flash(f"An account has been created for {f.user.data}", 'success')  # second arg captures bootstrap result success
+        print("redirect")
         return redirect(url_for('index'))
 
     return render_template("register.html", title="Register", form=f)
@@ -41,6 +42,11 @@ def register():
 @app.route("/login", methods=['POST', 'GET'])
 def login():
     f = forms.LoginFm()
+
+    if f.validate_on_submit():
+        flash(f"Successful login test for {f.user.data}!", 'success')  
+        return redirect(url_for('index'))
+
     return render_template("login.html", title="Login", form=f)
 
 

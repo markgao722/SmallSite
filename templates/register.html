@@ -1,14 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
+    
+    <!-- displays flash text with second argument "success" -->
+    {% with messages=get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert-{{ category }}">  <!-- alert-sucess is a bootstrap feature -->
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <form method="POST" action="">
-        {{ form.hidden_tag() }} <!--- protects against CSRF attack -->
+        {{ form.hidden_tag() }}  <!--- protects against CSRF attack -->
 
         {{ form.user.label() }}
-        {{ form.user() }}
+        {% if form.user.errors %}
+            {{ form.user(class="is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.user.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.user() }}
+        {% endif %}
+
         {{ form.password.label() }}
-        {{ form.password() }}
+        {% if form.password.errors %}
+            {{ form.password(class="is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.password() }}
+        {% endif %}
+
         {{ form.password_confirm.label() }}
-        {{ form.password_confirm() }}
+        {% if form.password_confirm.errors %}
+            {{ form.password_confirm(class="is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.password_confirm.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.password_confirm() }}
+        {% endif %}
 
         {{ form.submit_btn(class="btn") }}  <!-- apply classes like this -->
     </form>
