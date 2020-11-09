@@ -21,6 +21,14 @@
     {% endif %}
     {% endwith %}
 
+    <!-- Log in/out buttons -->
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('logout') }}">Log Out</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">Log in</a>
+        <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+
     <!-- inhereting templates data goes below -->
     {% block content %} {% endblock %}
 </body>

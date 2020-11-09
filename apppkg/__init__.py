@@ -12,5 +12,6 @@ db = SQLAlchemy(app)
 
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+login_manager.login_view = 'login'  # route function name for login route
 
 from apppkg import routes  # not pythonic but no other solution given
