@@ -9,6 +9,18 @@
     {% block head %} {% endblock %}
 </head>
 <body>
+    <!-- displays flash text with second argument "success" -->
+    <!-- move to different page if register/login redirect is no longer index -->
+    {% with messages=get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert-{{ category }}">  <!-- alert-sucess is a bootstrap feature -->
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     <!-- inhereting templates data goes below -->
     {% block content %} {% endblock %}
 </body>
